@@ -12,12 +12,14 @@ class TitleCollectionViewCell: UICollectionViewCell {
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(posterImageView)
+        applyConstraints()
     }
     
     required init(coder: NSCoder) {
@@ -27,6 +29,18 @@ class TitleCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         posterImageView.frame = contentView.bounds
+        
+    }
+    
+    private func applyConstraints() {
+        let titlePosterUIImageViewConstraint = [
+            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            posterImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3 - 20),
+        ]
+
+        NSLayoutConstraint.activate(titlePosterUIImageViewConstraint)
     }
     
     public func configure(with model: String){
@@ -47,14 +61,3 @@ class TitleCollectionViewCell: UICollectionViewCell {
 
 
 
-
-
-
-//let urlString = "https://cdn.baoquocte.vn/stores/news_dataimages/nguyennga/012022/19/13/nga-chu-meo-khong-lo-khi-moi-hon-2-tuoi-da-nang-125-kg.jpg?rt=20220119133733"
-//        //2 URL
-//        let url = URL(string: urlString)
-//        //3 get data from url
-//        let imgData = try! Data(contentsOf: url!)
-//        //4 gan data vao trong imageview
-//        myImage.image = UIImage(data: imgData)
-//        print("okButton nhan dayyyy")
