@@ -30,12 +30,6 @@ class TitleCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with model: String){
-        //        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model)") else {return}
-        //        let imgData = try! Data(contentsOf: url)
-        //        posterImageView.image = UIImage(data: imgData)
-        //        print(model)
-        
-        
         if let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model)") {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {
