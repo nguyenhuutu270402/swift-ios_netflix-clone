@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		016744FA29FA069600E3DE11 /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016744F929FA069600E3DE11 /* YoutubeSearchResponse.swift */; };
+		016744FC29FA15D600E3DE11 /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016744FB29FA15D600E3DE11 /* TitlePreviewViewController.swift */; };
+		016744FE29FA196900E3DE11 /* TitlePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016744FD29FA196900E3DE11 /* TitlePreviewViewModel.swift */; };
 		0187A92129F9082300EC2BF3 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0187A92029F9082300EC2BF3 /* TitleTableViewCell.swift */; };
 		0187A92329F90C2C00EC2BF3 /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0187A92229F90C2C00EC2BF3 /* TitleViewModel.swift */; };
 		0187A92529F91E5B00EC2BF3 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0187A92429F91E5B00EC2BF3 /* SearchResultsViewController.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		016744F929FA069600E3DE11 /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
+		016744FB29FA15D600E3DE11 /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
+		016744FD29FA196900E3DE11 /* TitlePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewModel.swift; sourceTree = "<group>"; };
 		0187A92029F9082300EC2BF3 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		0187A92229F90C2C00EC2BF3 /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		0187A92429F91E5B00EC2BF3 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				0187A92429F91E5B00EC2BF3 /* SearchResultsViewController.swift */,
+				016744FB29FA15D600E3DE11 /* TitlePreviewViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -126,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				0187A92229F90C2C00EC2BF3 /* TitleViewModel.swift */,
+				016744FD29FA196900E3DE11 /* TitlePreviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				01EFDC0729F8C6060022BC05 /* Movie.swift */,
+				016744F929FA069600E3DE11 /* YoutubeSearchResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,14 +243,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016744FE29FA196900E3DE11 /* TitlePreviewViewModel.swift in Sources */,
 				01C0A2FF29F8166100161810 /* SearchViewController.swift in Sources */,
 				01C0A2EA29F8136400161810 /* MainTabBarViewController.swift in Sources */,
+				016744FC29FA15D600E3DE11 /* TitlePreviewViewController.swift in Sources */,
 				0187A92129F9082300EC2BF3 /* TitleTableViewCell.swift in Sources */,
 				01C0A30829F81EFC00161810 /* CollectionViewTableViewCell.swift in Sources */,
 				0187A92529F91E5B00EC2BF3 /* SearchResultsViewController.swift in Sources */,
 				01EFDC0629F8C0D50022BC05 /* APICaller.swift in Sources */,
 				01C0A30A29F824A600161810 /* HeroHeaderUIView.swift in Sources */,
 				01C0A30129F8167D00161810 /* DownloadsViewController.swift in Sources */,
+				016744FA29FA069600E3DE11 /* YoutubeSearchResponse.swift in Sources */,
 				01C0A2E629F8136400161810 /* AppDelegate.swift in Sources */,
 				01C0A2E829F8136400161810 /* SceneDelegate.swift in Sources */,
 				01C0A2FD29F8164B00161810 /* UpcomingViewController.swift in Sources */,

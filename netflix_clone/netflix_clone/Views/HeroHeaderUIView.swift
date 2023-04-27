@@ -73,6 +73,21 @@ class HeroHeaderUIView: UIView {
         NSLayoutConstraint.activate(downloadButtonConstraints)
     }
     
+    public func configure(with model: TitleViewModel){
+        if let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.posterURL)") {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.heroImageView.image = UIImage(data: data!)
+                }
+            }
+            task.resume()
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         heroImageView.frame = bounds
