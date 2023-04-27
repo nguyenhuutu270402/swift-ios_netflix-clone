@@ -35,9 +35,10 @@ class TitleCollectionViewCell: UICollectionViewCell {
     private func applyConstraints() {
         let titlePosterUIImageViewConstraint = [
             posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            posterImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3 - 20),
+            posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            posterImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3 - 20),
         ]
 
         NSLayoutConstraint.activate(titlePosterUIImageViewConstraint)
