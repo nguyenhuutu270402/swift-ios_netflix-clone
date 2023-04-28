@@ -60,15 +60,11 @@ class CollectionViewTableViewCell: UITableViewCell {
             result in
             switch result {
             case .success():
-                print("Downloaded to Database")
+                NotificationCenter.default.post(name: NSNotification.Name("downloaded"), object: nil)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-        
-        
-        
-        print("Downloading \(titles[indexPath.row].original_title ?? titles[indexPath.row].title)")
     }
     
 }

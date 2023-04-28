@@ -9,7 +9,7 @@ import UIKit
 
 class DownloadsViewController: UIViewController {
 
-    private var titles: [Movie] = [Movie]()
+    private var titles: [TitleItem] = [TitleItem]()
     
     private let downloadedTable: UITableView = {
         
@@ -23,12 +23,17 @@ class DownloadsViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         title = "Downloads"
+        view.addSubview(downloadedTable)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.tintColor = .label
         // Do any additional setup after loading the view.
         downloadedTable.delegate = self
         downloadedTable.dataSource = self
         fetchLocalStorageForDownload()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("downloaded"), object: nil, queue: nil) {
+            _ in self.fetchLocalStorageForDownload()
+        }
     }
     
     private func fetchLocalStorageForDownload() {
@@ -37,11 +42,16 @@ class DownloadsViewController: UIViewController {
             switch result {
             case .success(let titles):
                 self?.titles = titles
-                self?.downloadedTable.reloadData()
+                    self?.downloadedTable.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        downloadedTable.frame = view.bounds
     }
 
 }
@@ -64,5 +74,42 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+                DataPersistenceManager.shared.deleteTitleWith(model: titles[indexPath.row]) {
+                [weak self] results in
+                switch results {
+                case .success():
+                    print("Deleted from the databse")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                self?.titles.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let title = titles[indexPath.row]
+        guard let titleName = title.original_title ?? title.title else {return}
+        
+        APICaller.shared.getMovie(with: titleName + " trailer") { [weak self] results in
+            switch results {
+            case .success(let videoElement):
+                DispatchQueue.main.async { [weak self] in
+                    let vc = TitlePreviewViewController()
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview ?? ""))
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
